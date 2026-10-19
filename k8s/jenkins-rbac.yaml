@@ -1,0 +1,44 @@
+# Lets Jenkins deploy into the "webapps" namespace.
+# kubectl create ns webapps
+# kubectl apply -f k8s/jenkins-rbac.yaml
+# kubectl -n webapps get secret jenkins-token -o jsonpath='{.data.token}' | base64 -d
+#   -> paste that token into Jenkins as a "Secret text" credential with ID k8-cred
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins
+  namespace: webapps
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: jenkins-deployer
+  namespace: webapps
+rules:
+  - apiGroups: ["", "apps", "autoscaling", "networking.k8s.io"]
+    resources: ["pods", "pods/log", "services", "endpoints", "configmaps", "secrets",
+                "deployments", "replicasets", "horizontalpodautoscalers", "ingresses"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jenkins-deployer-binding
+  namespace: webapps
+subjects:
+  - kind: ServiceAccount
+    name: jenkins
+    namespace: webapps
+roleRef:
+  kind: Role
+  name: jenkins-deployer
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jenkins-token
+  namespace: webapps
+  annotations:
+    kubernetes.io/service-account.name: jenkins
+type: kubernetes.io/service-account-token

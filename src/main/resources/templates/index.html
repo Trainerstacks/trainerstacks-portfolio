@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Senthil | Cloud &amp; DevOps Trainer | TrainerStacks</title>
+    <meta name="description" content="Senthil, founder of TrainerStacks. Hands-on AWS, Azure, GCP, Linux, DevOps, DevSecOps and AI/ML training.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a class="brand" href="#top">TrainerStacks</a>
+    <nav aria-label="Main">
+        <a href="#courses">Courses</a>
+        <a href="#journey">Journey</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<main id="top">
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Senthil</h1>
+            <p class="lede">I teach engineers to build, ship and run real systems on the cloud: AWS, Azure, GCP, Kubernetes and the pipelines that tie them together.</p>
+            <p class="sub">Founder of TrainerStacks, Karaikudi. Training batches in Chennai and online since 2021.</p>
+            <div class="actions">
+                <a class="btn primary" href="#contact">Book a training batch</a>
+                <a class="btn" href="#courses">See courses</a>
+            </div>
+        </div>
+
+        <aside class="pod-panel" aria-labelledby="pod-title">
+            <h2 id="pod-title">This page is running on Kubernetes</h2>
+            <dl>
+                <div><dt>Pod</dt><dd id="pod" th:text="${podName}">portfolio-7d9f-abcde</dd></div>
+                <div><dt>Node</dt><dd id="node" th:text="${nodeName}">worker1</dd></div>
+                <div><dt>Version</dt><dd id="version" th:text="${version}">1.0.0</dd></div>
+            </dl>
+            <button type="button" id="refresh-pod" class="btn small">Ask again</button>
+            <p class="hint" id="pod-hint">Each request can land on a different replica. Ask again to see the Service balance traffic.</p>
+        </aside>
+    </section>
+
+    <section id="courses" class="block">
+        <h2>Courses</h2>
+        <ul class="courses">
+            <li><h3>AWS Cloud</h3><p>EC2, VPC, IAM, S3, RDS, EKS and ECS, built hands-on from an empty account.</p></li>
+            <li><h3>DevOps</h3><p>Git, Jenkins, Maven, Docker, Kubernetes, Helm and Ansible in one working pipeline.</p></li>
+            <li><h3>DevSecOps</h3><p>SonarQube, Trivy and secure CI/CD, so security checks run on every commit.</p></li>
+            <li><h3>Azure &amp; GCP</h3><p>The same core skills on the other two clouds, mapped service by service.</p></li>
+            <li><h3>Linux Administration</h3><p>Users, permissions, networking, systemd and shell scripting for servers.</p></li>
+            <li><h3>AI/ML for Engineers</h3><p>Practical machine learning and running AI workloads on cloud infrastructure.</p></li>
+        </ul>
+    </section>
+
+    <section id="journey" class="block">
+        <h2>Journey</h2>
+        <ol class="timeline">
+            <li>
+                <span class="when">2018 to 2021</span>
+                <h3>Cloud Administrator</h3>
+                <p>Ran cloud infrastructure day to day: servers, networking, access and monitoring.</p>
+            </li>
+            <li>
+                <span class="when">2021 to now</span>
+                <h3>AWS &amp; DevOps Trainer, Chennai</h3>
+                <p>Corporate and classroom batches across AWS, Azure, GCP, Linux and DevOps.</p>
+            </li>
+            <li>
+                <span class="when">2021 to 2023</span>
+                <h3>B.Tech, Information Technology</h3>
+                <p>Panimalar Engineering College.</p>
+            </li>
+            <li>
+                <span class="when">2026</span>
+                <h3>Founded TrainerStacks</h3>
+                <p>Training, consulting and cloud services for Indian startups and SMEs.</p>
+            </li>
+        </ol>
+    </section>
+
+    <section id="projects" class="block">
+        <h2>Projects students build</h2>
+        <ul class="projects">
+            <li>
+                <h3>This portfolio</h3>
+                <p>Spring Boot app, tested with Maven, scanned by SonarQube and Trivy, pushed to Docker Hub and deployed to a kubeadm cluster by Jenkins.</p>
+            </li>
+            <li>
+                <h3>Spring Boot and MySQL on EKS</h3>
+                <p>A two-tier app deployed with eksctl and Helm behind an AWS Load Balancer.</p>
+            </li>
+            <li>
+                <h3>TrainerStacks Car Racing Game</h3>
+                <p>A playable Spring Boot game with Docker, Kubernetes manifests and a CI/CD pipeline.</p>
+            </li>
+            <li>
+                <h3>Ansible master and worker setup</h3>
+                <p>Automating configuration across several EC2 instances from one control node.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="contact" class="block contact">
+        <h2>Train your team with me</h2>
+        <p>Corporate batches, college workshops and one-to-one mentoring. Tell me what your team needs to learn.</p>
+        <ul class="contact-list">
+            <li><span>Email</span> <a th:href="'mailto:' + ${email}" th:text="${email}" href="#">email</a></li>
+            <li><span>Phone</span> <a th:href="'tel:' + ${#strings.replace(phone, ' ', '')}" th:text="${phone}" href="#">phone</a></li>
+            <li><span>LinkedIn</span> <a th:href="${linkedin}" href="#" rel="noopener" target="_blank">View profile</a></li>
+            <li><span>GitHub</span> <a th:href="${github}" href="#" rel="noopener" target="_blank">View repositories</a></li>
+        </ul>
+    </section>
+
+</main>
+
+<footer class="foot">
+    <p>&copy; 2026 TrainerStacks, Karaikudi. Served by <span th:text="${podName}">pod</span>.</p>
+</footer>
+
+<script>
+(function () {
+    var btn = document.getElementById('refresh-pod');
+    var hint = document.getElementById('pod-hint');
+    var podEl = document.getElementById('pod');
+    var nodeEl = document.getElementById('node');
+    var verEl = document.getElementById('version');
+    btn.addEventListener('click', function () {
+        var before = podEl.textContent;
+        btn.disabled = true;
+        fetch('/api/info', { cache: 'no-store' })
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+            .then(function (d) {
+                podEl.textContent = d.pod;
+                nodeEl.textContent = d.node;
+                verEl.textContent = d.version;
+                var changed = d.pod !== before;
+                podEl.classList.remove('flash'); void podEl.offsetWidth;
+                if (changed) podEl.classList.add('flash');
+                hint.textContent = changed
+                    ? 'A different pod answered this time.'
+                    : 'Same pod answered. Ask again, or scale up the Deployment.';
+            })
+            .catch(function () {
+                hint.textContent = 'Could not reach /api/info. Check that the pods are Ready.';
+            })
+            .finally(function () { btn.disabled = false; });
+    });
+})();
+</script>
+</body>
+</html>
